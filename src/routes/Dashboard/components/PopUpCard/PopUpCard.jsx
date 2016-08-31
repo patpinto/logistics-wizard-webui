@@ -49,7 +49,7 @@ export default class PopUpCard extends React.Component {
 }
 
 PopUpCard.propTypes = {
+  shipmentId: React.PropTypes.number.isRequired,
   dbdata: React.PropTypes.object.isRequired,
-  getShipmentData: React.PropTypes.func.isRequired,
   params: React.PropTypes.object.isRequired,
 };

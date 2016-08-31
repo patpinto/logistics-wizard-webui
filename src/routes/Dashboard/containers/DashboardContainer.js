@@ -4,6 +4,7 @@ import Dashboard from '../components/Dashboard';
 
 const mapActionCreators = {
   getAdminData,
+  nextShipment,
 };
 
 const mapStateToProps = (state) => ({
