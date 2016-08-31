@@ -4,12 +4,11 @@ import Dashboard from '../components/Dashboard';
 
 const mapActionCreators = {
   getAdminData,
-  nextShipment,
 };
 
 const mapStateToProps = (state) => ({
-  demoName: state.demoSession.name,
-  dbdata: state.dashboard,
+  demoName: state.demoSession.name || undefined,
+  shipments: state.dashboard.shipments || undefined,
 });
 
 export default connect(mapStateToProps, mapActionCreators)(Dashboard);

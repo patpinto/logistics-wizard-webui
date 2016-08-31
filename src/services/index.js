@@ -40,10 +40,8 @@ export const login = (id, guid) =>
 export const getAdminData = token =>
   callApi('admin', CONTROLLER_URL, { headers: { Authorization: `Bearer ${token}` } });
 
-
-export const getShipment = (guid) => {
-  return callApi(`shipments/${guid}?access_token=L2W88GRlIpYq3r9kWNI2nAfpxH73rMLcODv5UUVuB8Gr2VEgpXjADrxdsaQE7Feo`, ERP_URL);
-};
+export const getShipment = (guid) =>
+  callApi(`shipments/${guid}?access_token=L2W88GRlIpYq3r9kWNI2nAfpxH73rMLcODv5UUVuB8Gr2VEgpXjADrxdsaQE7Feo`, ERP_URL);
 
 export const api = {
   createDemo,

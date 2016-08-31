@@ -1,4 +1,3 @@
-import api from 'services';
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
@@ -15,41 +14,30 @@ const styles = {
 };
 
 
-export default class PopUpCard extends React.Component {
-  constructor(props) {
-    super(props);
-    props.getShipmentData(props.params.guid);
-    // this.state = {
-    //   title: `Shipment ${this.props.id}`,
-    // };
-    // const reactThis = this;
-    // api.getShipment(this.props.id).then(result => {
-    //   reactThis.setState({ result });
-    // });
-  }
+const PopUpCard = (props) => {
+  const location = props.location
+    ? `${props.location.city}, ${props.location.state}`
+    : '...';
 
-  render() {
-    const location = this.props.dbdata ?
-      `${this.props.dbdata.currentLocation.city}, ${this.props.dbdata.currentLocation.state}` :
-      '...';
-    return (
-      <Paper style={styles.paper} zDepth={2}>
-        <Toolbar>
-          <ToolbarTitle text={this.props.dbdata.title ? this.props.title : '...'} />
-        </Toolbar>
-        <div className={classes.mainSection}>
-          <pre>
-            Status: { this.props.dbdata ? this.props.dbdata.status : 'loading...'}{"\n"}
-            Location: {location}
-          </pre>
-        </div>
-      </Paper>
-    );
-  }
-}
+  return (
+    <Paper style={styles.paper} zDepth={2}>
+      <Toolbar>
+        <ToolbarTitle text={props.title ? props.title : '...'} />
+      </Toolbar>
+      <div className={classes.mainSection}>
+        <pre>
+          Status: { props.status ? props.status : 'loading...'}{"\n"}
+          Location: {location}
+        </pre>
+      </div>
+    </Paper>
+  );
+};
 
 PopUpCard.propTypes = {
-  shipmentId: React.PropTypes.number.isRequired,
-  dbdata: React.PropTypes.object.isRequired,
-  params: React.PropTypes.object.isRequired,
+  location: React.PropTypes.object.isRequired,
+  status: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired,
 };
+
+export default PopUpCard;
