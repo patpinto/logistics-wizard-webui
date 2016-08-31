@@ -6,6 +6,7 @@ import centered from '@kadira/react-storybook-decorator-centered';
 import muiTheme from 'styles/muiTheme';
 import '../src/styles/core.scss';
 
+global.__DEV__ = true;
 injectTapEventPlugin();
 const rootStories = require.context('./stories/', true, /\.js$/);
 const srcStories = require.context('../src/', true, /\.story\.js$/);

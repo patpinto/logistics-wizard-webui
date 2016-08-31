@@ -2,6 +2,7 @@ import CoreLayout from '../layouts/CoreLayout/CoreLayout';
 import Home from './Home';
 import CreateDemoRoute from './CreateDemo';
 import DashboardRoute from './Dashboard';
+import PopUpCardRoute from './Dashboard/PopUpCard'
 
 export const createRoutes = (store) => ({
   path: '/',
@@ -10,6 +11,7 @@ export const createRoutes = (store) => ({
   childRoutes: [
     CreateDemoRoute(store),
     DashboardRoute(store),
+    PopUpCardRoute(store),
   ],
 });
 

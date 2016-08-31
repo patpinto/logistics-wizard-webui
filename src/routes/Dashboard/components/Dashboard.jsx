@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './Dashboard.scss';
+import PopUpCard from './../PopUpCard/conatiners/PopUpCardContainer';
+
 
 export default class Dashboard extends React.PureComponent {
   constructor(props) {
@@ -12,6 +14,10 @@ export default class Dashboard extends React.PureComponent {
       <div className={classes.dashboard}>
         <h4>Dashboard - Yay, you created a demo!</h4>
         <p>Demo Name: {this.props.demoName || 'loading...'}</p>
+        <PopUpCard
+          getShipmentData={WHAT GOES HERE???}
+          params={{ guid: '439' }}
+        />
         <pre>{this.props.dbdata ? JSON.stringify(this.props.dbdata, null, 2) : 'loading...'}</pre>
       </div>
     );

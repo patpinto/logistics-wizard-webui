@@ -6,32 +6,32 @@ import { loginSuccess, receiveDemoSuccess, demoSelector } from 'modules/demos';
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const GET_ADMIN_DATA = 'Dashboard/GET_ADMIN_DATA';
-export const ADMIN_DATA_RECEIVED = 'Dashboard/ADMIN_DATA_RECEIVED';
+export const GET_SHIPMENT_DATA = 'PopUpCard/GET_ADMIN_DATA';
+export const SHIPMENT_DATA_RECEIVED = 'PopUpCard/SHIPMENT_DATA_RECEIVED';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const getAdminData = (value) => ({
-  type: GET_ADMIN_DATA,
+export const getShipmentData = (value) => ({
+  type: GET_SHIPMENT_DATA,
   payload: value,
 });
 
-export const adminDataReceived = (value) => ({
-  type: ADMIN_DATA_RECEIVED,
+export const shipmentDataReceived = (value) => ({
+  type: SHIPMENT_DATA_RECEIVED,
   payload: value,
 });
 
 export const actions = {
-  getAdminData,
-  adminDataReceived,
+  getShipmentData,
+  shipmentDataReceived,
 };
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [ADMIN_DATA_RECEIVED]: (state, action) => ({
+  [SHIPMENT_DATA_RECEIVED]: (state, action) => ({
     ...state,
     ...action.payload,
   }),
@@ -42,12 +42,12 @@ const ACTION_HANDLERS = {
 // ------------------------------------
 const initialState = {
 };
-export const dashboardReducer = (state = initialState, action) => {
+export const popupcardReducer = (state = initialState, action) => {
   const handler = ACTION_HANDLERS[action.type];
 
   return handler ? handler(state, action) : state;
 };
-export default dashboardReducer;
+export default popupcardReducer;
 
 // ------------------------------------
 // Sagas
@@ -56,12 +56,10 @@ export default dashboardReducer;
 // This is set up in `../index.js` as the key in  `injectSagas(store, { key: 'dashboard', sagas });`
 export const dashboardSelector = state => state.dashboard;
 
-function *watchGetAdminData() {
-  console.log("watchGetAdminData");
-  var e = new Error();
-  console.log(e.stack);
+function *watchGetShipmentData() {
+  console.log("watchGetShipmentData");
   while (true) {
-    const { payload } = yield take(GET_ADMIN_DATA);
+    const { payload } = yield take(GET_SHIPMENT_DATA);
     let demoState = yield select(demoSelector);
     if (demoState.guid !== payload) {
       try {
@@ -86,8 +84,8 @@ function *watchGetAdminData() {
     }
 
     try {
-      const adminData = yield call(api.getAdminData, demoState.token);
-      yield put(adminDataReceived(adminData));
+      const shipmentData = yield call(api.getShipmentData, demoState.token);
+      yield put(shipmentDataReceived(shipmentData));
     }
     catch (error) {
       console.log(error);
@@ -97,5 +95,5 @@ function *watchGetAdminData() {
 }
 
 export const sagas = [
-  watchGetAdminData,
+  watchGetShipmentData,
 ];
