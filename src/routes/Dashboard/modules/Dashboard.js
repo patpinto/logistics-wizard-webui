@@ -23,9 +23,9 @@ export const adminDataReceived = (value) => ({
   payload: value,
 });
 
-export const getShipmentData = (value) => ({
+export const getShipmentData = () => ({
   type: GET_SHIPMENT_DATA,
-  payload: value,
+  payload: '',
 });
 
 export const shipmentDataReceived = (value) => ({
@@ -109,16 +109,13 @@ function *watchGetAdminData() {
   }
 }
 
-// This probably won't work with the current api call...I'm assuming
-// that api.getShipmentData returns only one shipment
-// If it returned an array of shipments, then this flow would work
 function *watchGetShipmentData() {
   while (true) {
     yield take(GET_SHIPMENT_DATA);
+    yield take(ADMIN_DATA_RECEIVED);
     const demoState = yield select(demoSelector);
-
     try {
-      const shipmentData = yield call(api.getShipmentData, demoState.guid);
+      const shipmentData = yield call(api.getShipmentData, demoState.token);
       yield put(shipmentDataReceived(shipmentData));
     }
     catch (error) {

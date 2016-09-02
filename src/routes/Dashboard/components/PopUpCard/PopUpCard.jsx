@@ -18,16 +18,18 @@ const PopUpCard = (props) => {
   const location = props.location
     ? `${props.location.city}, ${props.location.state}`
     : '...';
-
+  const title = props.title
+    ? `Shipment ${props.title}`
+    : '...';
   return (
     <Paper style={styles.paper} zDepth={2}>
       <Toolbar>
-        <ToolbarTitle text={props.title ? props.title : '...'} />
+        <ToolbarTitle text={title} />
       </Toolbar>
       <div className={classes.mainSection}>
         <pre>
           Status: { props.status ? props.status : 'loading...'}{"\n"}
-          Location: {location}
+          Location: { location }
         </pre>
       </div>
     </Paper>

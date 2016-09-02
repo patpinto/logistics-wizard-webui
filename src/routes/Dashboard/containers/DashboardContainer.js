@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { getAdminData } from '../modules/Dashboard';
+import { getAdminData, getShipmentData } from '../modules/Dashboard';
 import Dashboard from '../components/Dashboard';
 
 const mapActionCreators = {
   getAdminData,
+  getShipmentData,
 };
 
 const mapStateToProps = (state) => ({

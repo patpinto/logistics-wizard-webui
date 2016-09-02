@@ -11,8 +11,10 @@ export const callApi = (endpoint, apiUrl, {
   headers = { 'Content-Type': 'application/json' },
   method = 'GET',
   body,
-} = {}) =>
-  fetch(`${apiUrl}/${endpoint}`, {
+} = {}) => {
+  // console.log("endpoint: ", endpoint);
+  // console.log("HEADERS: ", headers);
+  return fetch(`${apiUrl}/${endpoint}`, {
     headers,
     method,
     body: body ? JSON.stringify(body) : undefined,
@@ -21,7 +23,8 @@ export const callApi = (endpoint, apiUrl, {
   .then(({ json, response }) => {
     if (!response.ok) throw json;
     return json;
-  });
+  })
+};
 
 export const createDemo = (name, email) =>
   callApi('demos', CONTROLLER_URL, {
@@ -40,15 +43,15 @@ export const login = (id, guid) =>
 export const getAdminData = token =>
   callApi('admin', CONTROLLER_URL, { headers: { Authorization: `Bearer ${token}` } });
 
-export const getShipment = (guid) =>
-  callApi(`shipments/${guid}?access_token=L2W88GRlIpYq3r9kWNI2nAfpxH73rMLcODv5UUVuB8Gr2VEgpXjADrxdsaQE7Feo`, ERP_URL);
-
+export const getShipmentData = (token) => callApi('shipments'
+    , CONTROLLER_URL
+    , { headers: { Authorization: `Bearer ${token}` } });
 export const api = {
   createDemo,
   getDemo,
   login,
   getAdminData,
-  getShipment,
+  getShipmentData,
 };
 
 export default api;

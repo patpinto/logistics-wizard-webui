@@ -74,7 +74,7 @@ export class RoleItem extends React.Component {
 }
 
 RoleItem.propTypes = {
-  selected: React.PropTypes.bool,
+  selected: React.PropTypes.string,
   type: React.PropTypes.string,
   location: React.PropTypes.string,
   icon: React.PropTypes.string.isRequired,
